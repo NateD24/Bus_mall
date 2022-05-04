@@ -1,5 +1,7 @@
 'use strict'
+
 console.log('hello world')
+
 const picContainerElement = document.getElementById ('pics');
 
 const firstPicElement = document.getElementById ('pic1');
@@ -21,67 +23,71 @@ let pic1 = null;
 let pic2 = null;
 let pic3 = null;
 
-
-function Images(name, imgPath,){
-    this.name = name;
-    this.imgPath = imgPath;
-    this.clicks = 0;
-    this.views = 0;
+//constructor function
+function Image(name, imgPath,){
+  this.name = name;
+  this.imgPath = imgPath;
+  this.clicks = 0;
+  this.views = 0;
 }
 
 Image.allImages = [];
 
+//Prototype
 Image.prototype.renderImage = function(img, h2){
-    img.src = this.imgPath;
-    h2.textContent = this.name;
-    this.views ++;
+  img.src = this.imgPath;
+  h2.textContent = this.name;
+  this.views ++;
 }
 
+Image.allImages.push(new Image('banana', './images/banana.jpg'));
+Image.allImages.push(new Image('bathroom', './images/bathroom.jpg'));
+Image.allImages.push(new Image('boots', './images/boots.jpg'));
+Image.allImages.push(new Image('breakfast', './images/breakfast.jpg'));
+Image.allImages.push(new Image('bubblegum', './images/bubblegum.jpg'));
+Image.allImages.push(new Image('chair', './images/chair.jpg'));
+Image.allImages.push(new Image('cthulhu', './images/cthulhu.jpg'));
+Image.allImages.push(new Image('dog-duck', './images/dog-duck.jpg'));
+Image.allImages.push(new Image('dragon', './images/dragon.jpg'));
+Image.allImages.push(new Image('pen', './images/pen.jpg'));
+Image.allImages.push(new Image('pet-sweep', './images/pet-sweep.jpg'));
+Image.allImages.push(new Image('scissors', './images/scissors.jpg'));
+Image.allImages.push(new Image('shark', './images/shark.jpg'));
+Image.allImages.push(new Image('sweep', './images/sweep.png'));
+Image.allImages.push(new Image('tauntaun', './images/tauntaun.jpg'));
+Image.allImages.push(new Image('unicorn', './images/unicorn.jpg'));
+Image.allImages.push(new Image('water-can', './images/water-can.jpg'));
+Image.allImages.push(new Image('wine-glass', './images/wine-glass.jpg'));
 
-Image.allImages.push(new Image('bag','./images/bag.jpg'));
-Image.allImages.push(new Image('banana','./images/banana.jpg'));
-Image.allImages.push(new Image('bathroom','./images/bathroom.jpg'));
-Image.allImages.push(new Image('boots','./images/boots.jpg'));
-Image.allImages.push(new Image('breakfast','./images/breakfast.jpg'));
-Image.allImages.push(new Image('bubblegum','./images/bubblegum.jpg'));
-Image.allImages.push(new Image('chair','./images/chair.jpg'));
-Image.allImages.push(new Image('cthulhu','./images/cthulu.jpg'));
-Image.allImages.push(new Image('dog-duck','./images/dog-duck.jpg'));
-Image.allImages.push(new Image('dragon','./images/dragon.jpg'));
-Image.allImages.push(new Image('pen','./images/pen.jpg'));
-Image.allImages.push(new Image('pet-sweep','./images/pet-sweep.jpg'));
-Image.allImages.push(new Image('scissors','./images/scissors.jpg'));
-Image.allImages.push(new Image('shark','./images/shark.jpg'));
-Image.allImages.push(new Image('sweep','./images/sweep.jpg'));
-Image.allImages.push(new Image('tauntaun','./images/tauntaun.jpg'));
-Image.allImages.push(new Image('unicorn','./images/unicorn.jpg'));
-Image.allImages.push(new Image('water-can','./images/water-can.jpg'));
-Image.allImages.push(new Image('wine-glass','./images/wine-glass.jpg'));
 
-function getThreeImages(){
+//Get three new images on reset
+  function getThreeImages(){
     const cantUse = [pic1, pic2, pic3];
-     if(cantUse.includes(pic1)){
-         let picOne = Math.floor(Math.random() * Image.allImages.length);
-         pic1 = Image.allImages[picOne];
-     }
-      cantUse.push[pic1]
-      if(cantUse.includes(pic2)){
-          let picTwo = Math.floor(Math.random() * Image.allImages.length);
-          pic2 = Image.allImages[picTwo];
+     while(cantUse.includes(pic1)){
+        let picOne = Math.floor(Math.random() * Image.allImages.length);
+        pic1 = Image.allImages[picOne];
       }
-       cantUse.push[pic2];
-       if(cantUse.includes(pic3)){
-           let picThree = Math.floor(Math.random() * Image.allImages.length);
-           pic3 = Image.allImages[picThree];
-       }
-        cantUse.push[pic3];
+        cantUse.push[[pic1]]
+      while(cantUse.includes(pic2)){
+        let picTwo = Math.floor(Math.random() * Image.allImages.length);
+        pic2 = Image.allImages[picTwo];
+      }
+        cantUse.push[pic2];
+      while(cantUse.includes(pic3)){
+        let picThree = Math.floor(Math.random() * Image.allImages.length);
+        pic3 = Image.allImages[picThree]; 
+      }
+      cantUse.push[pic3];
+  }
+
+  //Render images to the html element
+function renderImage(){
+  pic1.renderImage(firstPicElement, firstPicTitle);
+  pic2.renderImage(secondPicElement, secondPicTitle);
+  pic3.renderImage(thirdPicElement, thirdPicTitle);
 }
 
-function renderImage(){
-    pic1.renderImage(firstPicElement, firstPicTitle);
-    pic2.renderImage(secondPicElement, secondPicTitle);
-    pic3.renderImage(thirdPicElement, thirdPicTitle);
-  }
+  
   
 
 // function storgeImages(){
