@@ -33,13 +33,14 @@ function Image(name, imgPath,){
 
 Image.allImages = [];
 
-//Prototype
+
 Image.prototype.renderImage = function(img, h2){
   img.src = this.imgPath;
   h2.textContent = this.name;
   this.views ++;
 }
 
+Image.allImages.push(new Image('bag', './images/bag.jpg'));
 Image.allImages.push(new Image('banana', './images/banana.jpg'));
 Image.allImages.push(new Image('bathroom', './images/bathroom.jpg'));
 Image.allImages.push(new Image('boots', './images/boots.jpg'));
@@ -60,7 +61,7 @@ Image.allImages.push(new Image('water-can', './images/water-can.jpg'));
 Image.allImages.push(new Image('wine-glass', './images/wine-glass.jpg'));
 
 
-//Get three new images on reset
+
   function getThreeImages(){
     const cantUse = [pic1, pic2, pic3];
      while(cantUse.includes(pic1)){
@@ -80,7 +81,7 @@ Image.allImages.push(new Image('wine-glass', './images/wine-glass.jpg'));
       cantUse.push[pic3];
   }
 
-  //Render images to the html element
+ 
 function renderImage(){
   pic1.renderImage(firstPicElement, firstPicTitle);
   pic2.renderImage(secondPicElement, secondPicTitle);
