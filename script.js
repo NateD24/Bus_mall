@@ -88,27 +88,42 @@ function renderImage(){
   pic3.renderImage(thirdPicElement, thirdPicTitle);
 }
 
-  
-  
+function storgeImages(){
+    let stringArray = JSON.stringify(Image.allImages);
+    if (stringArray = []){
+        localStorage.setItem('image',stringArray);
+    }
+      else(localStorage.setItem('image',stringArray));
+}
 
-// function storgeImages(){
-//     let stringArray = JSON.stringify(Image.allImages);
-//     if (stringArray = []){
-//         localStorage.setItem('image',stringArray);
-//     }
-//       else(localStorage.setItem('image',stringArray));
-// }
-
-// function getStorgeImages(){
-//     let storedImage = localStorage.getItem('image');
-//     if(storgeImages){
-//         let newImage = JSON.parse(storgeImages);
-//         for(let image of newImage){
-//             let myNewImage = new Image(image.name, image.imgpath, image.clicks ,image.views);
-//         }
-//     }
-// }
-
+function getStorgeImages(){
+    let storedImage = localStorage.getItem('image');
+    if(storgeImages){
+        let newImage = JSON.parse(storgeImages);
+        for(let image of newImage){
+            let myNewImage = new Image(image.name, image.imgpath, image.clicks ,image.views);
+            Image.allImages.push(myNewImage);
+        }
+    }
+}
+function handleClick(e){
+  let imageClicked = e.target.id;
+  if (imageClicked === 'pic1' || imageClicked === 'pic2' || imageClicked === 'pic3'){
+    count++
+  }
+  if (imageClicked === 'pic1'){
+    pic1.clicks++
+  }
+  if (imageClicked === 'pic2'){
+    pic2.clicks++
+  }
+  if (imageClicked === 'pic3'){
+    pic3.clicks++
+  }
+  getThreeImages();
+  renderImage();
+}
+picContainerElement.addEventListener('click', handleClick);
 
     getThreeImages();
     renderImage();
