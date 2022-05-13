@@ -81,6 +81,7 @@ Image.allImages.push(new Image('wine-glass', './images/wine-glass.jpg'));
       cantUse.push[pic3];
   }
 
+  
  
 function renderImage(){
   pic1.renderImage(firstPicElement, firstPicTitle);
@@ -106,6 +107,84 @@ function getStorgeImages(){
         }
     }
 }
+
+function makeChart(){
+  const ctx = document.getElementById('myChart').getContext('2d');
+
+  let imageNames = [];
+  let imageClicks = [];
+  let imageViews = [];
+
+  for(let image of Image.allImages){
+    imageNames.push(image.name);
+    imageClicks.push(image.clicks);
+    imageViews.push(image.views);
+  }
+
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: imageNames,
+        datasets: [{
+            label: '# of Votes',
+            data: imageClicks,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {
+          label: '# of Views',
+          data: imageViews,
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
+
+
+function removeImages(){
+  document.getElementById('container1').style.display = 'none';
+  document.getElementById('container2').style.display = 'none';
+  document.getElementById('container3').style.display = 'none';
+}
+
 function handleClick(e){
   let imageClicked = e.target.id;
   if (imageClicked === 'pic1' || imageClicked === 'pic2' || imageClicked === 'pic3'){
@@ -122,6 +201,11 @@ function handleClick(e){
   }
   getThreeImages();
   renderImage();
+  if (count === 25){
+    removeImages();
+    makeChart();
+ }
+storgeImages();
 }
 picContainerElement.addEventListener('click', handleClick);
 

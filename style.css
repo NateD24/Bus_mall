@@ -2,5 +2,12 @@ section{
     display: flex;
 }
 img{
+    display: flex;
     height: 400px;
+    width: 400px;
+    border: solid black 3px;
+    justify-content: space-around;
+}
+body{
+    background-color: silver;
 }
